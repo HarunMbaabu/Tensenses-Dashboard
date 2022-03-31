@@ -13,11 +13,6 @@ from dynamodb_json import json_util as json
 from boto3.dynamodb.conditions import Key, Attr
 
 
-""" ****
-CSS STYLES
-    ****
-"""
-
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
@@ -45,15 +40,12 @@ end_data1 = st.sidebar.date_input(
 
 st.title("TSA Report Generator Dashboard")
 
-uploaded_files = pd.DataFrame(st.file_uploader("Choose the payment excel file", accept_multiple_files=False))
-
-
 col1, col2 = st.columns([1,1]) 
 
 with col1:
     st.write(f"Total entries: {table.item_count}")
 with col2:
-    st.write(f"Current Gross Total: {data['amount'].sum()}")
+    st.write(f"Current Gross Total: {data['amount'].sum()} Ksh")
 
 
 
@@ -70,27 +62,14 @@ st.subheader("Total Amout Per Month")
 
 amount = summ["amount"]
 
-st.write(f"January: {amount[0]}")
+st.write(f"January: {amount[0]} Ksh")
 
-st.write(f"February: {amount[1]}")
+st.write(f"February: {amount[1]} Ksh")
 
-st.write(f"March: {amount[2]}")
+st.write(f"March: {amount[2]} Ksh")
 
 st.markdown("---")
 
-
-
-
-
-
-
-
-#Update date  for the desired report 
-start_date = end_data1
-end_date = end_data1
-
-
-# st.dataframe(table.scan())
 
 
 
@@ -98,7 +77,6 @@ st.sidebar.download_button(label="Download Data", data="", mime="text/csv", file
 
 hide_st_style = """
             <style>
-            #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             header {visibility: hidden;}
             </style>

@@ -57,7 +57,7 @@ data['creationDate'] = data['creationDate'].dt.strftime('%Y-%m')
 summ = data.groupby(['creationDate'], as_index=False)['amount'].sum() 
 
 
-st.subheader("Total Amout Per Month")
+st.subheader("Total Amount Per Month")
 
 amount = summ["amount"]
 

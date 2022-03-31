@@ -13,6 +13,14 @@ from dynamodb_json import json_util as json
 from boto3.dynamodb.conditions import Key, Attr
 
 
+""" ****
+CSS STYLES
+    ****
+"""
+
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 
 columns = ["ConversationID", "amount",   "costperkg", "creationDate",    "mobileNumber", "OriginatorConversationID", "partnerId",    "ReferenceData",    "ResultCode",   "ResultDesc",   "ResultParameters", "ResultType", "TransactionID",  "transactionId",    "valuechain",   "weight"]
 data = pd.read_csv("results.csv") 

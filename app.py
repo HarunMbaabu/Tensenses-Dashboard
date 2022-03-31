@@ -9,7 +9,6 @@ import pandas as pd
 import  streamlit  as st 
 import matplotlib.pyplot as plt
 from pandas.io.json import json_normalize
-from dynamodb_json import json_util as json 
 from boto3.dynamodb.conditions import Key, Attr
 
 

@@ -23,7 +23,7 @@ data = pd.read_csv("results.csv")
 
 st.sidebar.subheader("Select Date Range:")
 
-db = boto3.resource("dynamodb") 
+db = boto3.resource("dynamodb", aws_access_key_id='AKIATHTMAO23VZXNEIOV', aws_secret_access_key='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', region_name='eu-west-1') 
 
 table = db.Table("payment")
 

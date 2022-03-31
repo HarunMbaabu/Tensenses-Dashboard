@@ -6,5 +6,6 @@ matplotlib
  
 boto3 
 
+dynamo-json
 
 streamlit

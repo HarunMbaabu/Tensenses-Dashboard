@@ -2,6 +2,8 @@ numpy
 
 pandas
 
+matplotlib
+ 
 boto3 
 
 dynamo_json 

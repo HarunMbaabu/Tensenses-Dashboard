@@ -1,5 +1,17 @@
 ### Tensenses Dashboard for DigiFarm  
 
+##### **Package:**
+
+```
+1). Boto3
+2). Numpy 
+3). Pandas 
+4). Streamlit
+5). Matplotlib
+```
+ 
+
+
 - Convert Payment table in AWS DynamoDB to a Data Frame 
 
 ```python

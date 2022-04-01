@@ -65,7 +65,9 @@ st.write(f"January: {amount[0]} Ksh")
 
 st.write(f"February: {amount[1]} Ksh")
 
-st.write(f"March: {amount[2]} Ksh")
+st.write(f"March: {amount[2]} Ksh") 
+
+st.write(f"April: {amount[3].round(decimals=2)} ")
 
 st.markdown("---")
 

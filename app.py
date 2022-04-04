@@ -6,7 +6,7 @@ import requests
 import datetime 
 import numpy as np
 import pandas as pd
-import  streamlit  as st 
+import streamlit  as st 
 import matplotlib.pyplot as plt
 from pandas.io.json import json_normalize
 from boto3.dynamodb.conditions import Key, Attr
@@ -110,7 +110,7 @@ option = st.sidebar.selectbox(
 if 'January' in option:
     start_date1 = '2022-01-02'
     end_date1 = '2022-01-31' 
-    download_data(start_date1,end_date1) 
+    download_data(start_date1, end_date1) 
 
 if 'February' in option:# 
     start_date1 = '2022-02-1'

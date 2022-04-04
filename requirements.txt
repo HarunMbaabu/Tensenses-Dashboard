@@ -9,3 +9,5 @@ boto3
 dynamo-json
 
 streamlit
+
+openpyxl

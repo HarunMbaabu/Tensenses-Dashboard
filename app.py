@@ -28,8 +28,8 @@ data = get_data()
 
 st.sidebar.subheader("Select Date Range:")
 
-# db = boto3.resource("dynamodb") 
-# table = db.Table("payment")
+db = boto3.resource("dynamodb") 
+table = db.Table("payment")
 
 
 st.title("TSA Report Generator Dashboard")
@@ -98,29 +98,30 @@ def download_data(start_date, end_date):
 
     data_file_name = '1st February to 28th February TSA data.xlsx'
 
-    data.to_excel(data_file_name)
+    data.to_excel(data_file_name) 
+
     st.sidebar.download_button( label="Download Data", data=data.to_csv().encode('utf-8'), mime="csv", file_name="selected_data.csv")
 
 
 option = st.sidebar.selectbox(
-     'Select Your Target Month:',
+     'Select Month:',
      ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"))
 
 
 if 'January' in option:
-    start_date1 = '2022-01-02'
-    end_date1 = '2022-01-31' 
+    start_date1 = '2022-12-31'
+    end_date1 = '2022-02-01' 
     download_data(start_date1, end_date1) 
 
 if 'February' in option:# 
-    start_date1 = '2022-02-1'
-    end_date1 = '2022-2-28' 
-    download_data(start_date1,end_date1) 
+    feb_start_date = '2022-02-01'
+    feb_end_date = '2022-03-01' 
+    download_data(feb_start_date, feb_end_date) 
 
 if 'March' in option:# 
-    start_date1 = '2022-3-1'
-    end_date1 = '2022-3-31' 
-    download_data(start_date1,end_date1) 
+    march_start_date1 = '2022-03-01'
+    march_end_date1 = '2022-04-01' 
+    download_data(march_start_date1, march_end_date1) 
 
 
 if 'April' in option:
@@ -130,50 +131,17 @@ if 'April' in option:
 
 
 if 'May' in option:
-    start_date1 = '2022-04-01'
-    end_date1 = '2022-04-31' 
+    start_date1 = '2022-05-01'
+    end_date1 = '2022-05-31' 
     download_data(start_date1,end_date1) 
 
 
 
 if 'June' in option:
-    start_date1 = '2022-1-1'
-    end_date1 = '2022-1-31' 
+    start_date1 = '2022-06-01'
+    end_date1 = '2022-06-30' 
     download_data(start_date1,end_date1) 
-
-
-
-if 'July' in option:
-
-    start_date1 = '2022-1-1'
-    end_date1 = '2022-1-31' 
-    download_data(start_date1,end_date1)  
-
-if 'August' in option:
-    start_date1 = '2022-1-1'
-    end_date1 = '2022-1-31' 
-    download_data(start_date1,end_date1) 
-
-if 'September' in option:
-    start_date1 = '2022-1-1'
-    end_date1 = '2022-1-31' 
-    download_data(start_date1,end_date1) 
-
-if 'October' in option:#
-    start_date1 = '2022-1-1'
-    end_date1 = '2022-1-31' 
-    download_data(start_date1,end_date1) 
-
-if 'November' in option:  
-    start_date1 = '2022-1-1'
-    end_date1 = '2022-1-31' 
-    download_data(start_date1,end_date1) 
-
-
-if 'December ' in option:
-    start_date1 = '2022-1-1'
-    end_date1 = '2022-1-31' 
-    download_data(start_date1,end_date1)    
+  
 
 hide_st_style = """
             <style>

@@ -28,9 +28,6 @@ data = get_data()
 
 st.sidebar.subheader("Select Date Range:")
 
-db = boto3.resource("dynamodb") 
-table = db.Table("payment")
-
 
 st.title("TSA Report Generator Dashboard")
 

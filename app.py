@@ -81,9 +81,9 @@ st.title("Value chain summary")
 col1, col2 = st.columns([1,1]) 
 
 with col1:
-    st.write(f"Macamadia: {valuechain.Cashew:.2f} Ksh")
+    st.write(f"Macamadia: {valuechain.Macadamia:.2f} Ksh")
 with col2:
-    st.write(f"Cashew Nut: {valuechain.Macadamia:.2f} Ksh")
+    st.write(f"Cashew: {valuechain.Cashew:.2f} Ksh")
 # *********** Value chain summary **********
 
 

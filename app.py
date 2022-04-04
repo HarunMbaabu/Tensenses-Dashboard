@@ -76,7 +76,7 @@ st.markdown("---")
 valuechain = data.groupby(["valuechain"])["amount"].sum()
 # st.dataframe(data)
 
-st.title("Value chain summary")
+st.subheader("Value chain summary")
 
 col1, col2 = st.columns([1,1]) 
 

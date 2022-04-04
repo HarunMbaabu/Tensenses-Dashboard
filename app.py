@@ -16,10 +16,6 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 
-
-# columns = ["ConversationID", "amount",   "costperkg", "creationDate",    "mobileNumber", "OriginatorConversationID", "partnerId",    "ReferenceData",    "ResultCode",   "ResultDesc",   "ResultParameters", "ResultType", "TransactionID",  "transactionId",    "valuechain",   "weight"]
-
-
 def get_data():
     path = r'results.csv'
     return pd.read_csv(path)
@@ -32,8 +28,8 @@ data = get_data()
 
 st.sidebar.subheader("Select Date Range:")
 
-db = boto3.resource("dynamodb", aws_access_key_id='AKIATHTMAO23VZXNEIOV', aws_secret_access_key='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', region_name='eu-west-1') 
-table = db.Table("payment")
+# db = boto3.resource("dynamodb") 
+# table = db.Table("payment")
 
 
 st.title("TSA Report Generator Dashboard")
@@ -41,7 +37,7 @@ st.title("TSA Report Generator Dashboard")
 col1, col2 = st.columns([1,1]) 
 
 with col1:
-    st.write(f"Total entries: {table.item_count}")
+    st.write(f"Total entries: {len(data.index)}")
 with col2:
     st.write(f"Current Gross Total: {data['amount'].sum():.2f} Ksh")
 
@@ -76,17 +72,34 @@ st.markdown("---")
 valuechain = data.groupby(["valuechain"])["amount"].sum()
 # st.dataframe(data)
 
-st.subheader("Value chain summary")
+st.title("Value chain summary")
 
 col1, col2 = st.columns([1,1]) 
 
 with col1:
-    st.write(f"Macamadia: {valuechain.Macadamia:.2f} Ksh")
+    st.write(f"Macamadia: {valuechain.Cashew:.2f} Ksh")
 with col2:
-    st.write(f"Cashew: {valuechain.Cashew:.2f} Ksh")
+    st.write(f"Cashew Nut: {valuechain.Macadamia:.2f} Ksh")
 # *********** Value chain summary **********
 
 
+
+
+def download_data(start_date, end_date):
+    data = get_data()
+    mask = (data['creationDate'] > start_date) & (data['creationDate'] <= end_date)
+    data = data.loc[mask]
+
+    data["creationDate"] = pd.to_datetime(data["creationDate"]) 
+    data = data.sort_values(by="creationDate", ascending=False) 
+
+    data['creationDate'] = pd.to_datetime(data['creationDate']).dt.date
+
+
+    data_file_name = '1st February to 28th February TSA data.xlsx'
+
+    data.to_excel(data_file_name)
+    st.sidebar.download_button( label="Download Data", data=data.to_csv().encode('utf-8'), mime="csv", file_name="selected_data.csv")
 
 
 option = st.sidebar.selectbox(
@@ -94,17 +107,73 @@ option = st.sidebar.selectbox(
      ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"))
 
 
+if 'January' in option:
+    start_date1 = '2022-01-02'
+    end_date1 = '2022-01-31' 
+    download_data(start_date1,end_date1) 
+
+if 'February' in option:# 
+    start_date1 = '2022-02-1'
+    end_date1 = '2022-2-28' 
+    download_data(start_date1,end_date1) 
+
+if 'March' in option:# 
+    start_date1 = '2022-3-1'
+    end_date1 = '2022-3-31' 
+    download_data(start_date1,end_date1) 
 
 
-# mask = (data['creationDate'] > start_date) & (data['creationDate'] <= end_date)
-# mydf = data.loc[mask]
+if 'April' in option:
+    start_date1 = '2022-04-01'
+    end_date1 = '2022-04-30' 
+    download_data(start_date1,end_date1) 
 
 
-# st.title("View the selected data")
-# st.dataframe(mydf)
+if 'May' in option:
+    start_date1 = '2022-04-01'
+    end_date1 = '2022-04-31' 
+    download_data(start_date1,end_date1) 
 
 
-st.sidebar.download_button( label="Download Data", data=data.to_csv().encode('utf-8'), mime="csv", file_name="selected_data.csv")
+
+if 'June' in option:
+    start_date1 = '2022-1-1'
+    end_date1 = '2022-1-31' 
+    download_data(start_date1,end_date1) 
+
+
+
+if 'July' in option:
+
+    start_date1 = '2022-1-1'
+    end_date1 = '2022-1-31' 
+    download_data(start_date1,end_date1)  
+
+if 'August' in option:
+    start_date1 = '2022-1-1'
+    end_date1 = '2022-1-31' 
+    download_data(start_date1,end_date1) 
+
+if 'September' in option:
+    start_date1 = '2022-1-1'
+    end_date1 = '2022-1-31' 
+    download_data(start_date1,end_date1) 
+
+if 'October' in option:#
+    start_date1 = '2022-1-1'
+    end_date1 = '2022-1-31' 
+    download_data(start_date1,end_date1) 
+
+if 'November' in option:  
+    start_date1 = '2022-1-1'
+    end_date1 = '2022-1-31' 
+    download_data(start_date1,end_date1) 
+
+
+if 'December ' in option:
+    start_date1 = '2022-1-1'
+    end_date1 = '2022-1-31' 
+    download_data(start_date1,end_date1)    
 
 hide_st_style = """
             <style>

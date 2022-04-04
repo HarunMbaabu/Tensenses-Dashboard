@@ -138,7 +138,11 @@ if 'June' in option:
     start_date1 = '2022-06-01'
     end_date1 = '2022-06-30' 
     download_data(start_date1,end_date1) 
-  
+        
+st.markdown("---")
+st.subheader("General Analysis:")
+general_data = data[["amount", "costperkg", "weight"]]
+st.table(general_data.describe())        
 
 hide_st_style = """
             <style>

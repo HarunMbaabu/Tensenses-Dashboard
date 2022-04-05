@@ -243,18 +243,7 @@ if "April" in months:
     st.write(f"Total amount in April: {data['amount'].sum()}")
 
     # *********** Monthly Value chain summary **********
-    april_valuechain = data.groupby(["valuechain"])["amount"].sum()
-
-    st.title("February Value chain summary")
-
-    col1, col2 = st.columns([1,1]) 
-
-    with col1:
-        st.write(f"Macamadia: {april_valuechain.Macadamia:.2f} Ksh")
-    with col2:
-        st.write(f"Cashew: { april_valuechain.Cashew:.2f} Ksh")
-    # *********** Value chain summary **********    
-
+    st.error("April Value chain summary is not available.")
 
 if "May" in months:
     st.write("May data is not yet available")

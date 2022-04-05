@@ -106,9 +106,9 @@ option = st.sidebar.selectbox(
 
 
 if 'January' in option:
-    start_date1 = '2022-12-31'
-    end_date1 = '2022-02-01' 
-    download_data(start_date1, end_date1) 
+    start_date = '2021-12-31'
+    end_date = '2022-02-01' 
+    download_data(start_date, end_date) 
 
 if 'February' in option:# 
     feb_start_date = '2022-02-01'
@@ -128,21 +128,140 @@ if 'April' in option:
 
 
 if 'May' in option:
-    start_date1 = '2022-05-01'
-    end_date1 = '2022-05-31' 
-    download_data(start_date1,end_date1) 
+    st.write("May data is not yet available")
 
 
 
 if 'June' in option:
-    start_date1 = '2022-06-01'
-    end_date1 = '2022-06-30' 
-    download_data(start_date1,end_date1) 
+    st.write("June data is not yet available")
+    
+
         
 st.markdown("---")
 st.subheader("General Analysis:")
 general_data = data[["amount", "costperkg", "weight"]]
 st.table(general_data.describe())        
+
+st.markdown("---")
+st.subheader("Monthly Analysis:")
+
+months = st.sidebar.selectbox(
+    "Select month:",
+
+    ["January", "February", "March", "April", "May"])
+
+if "January" in months:
+    st.subheader("January:")
+    data = get_data()
+
+    start_date = '2021-12-31'
+    end_date = '2022-02-01'
+
+    mask = (data['creationDate'] > start_date) & (data['creationDate'] <= end_date)
+    data = data.loc[mask]
+
+    data["creationDate"] = pd.to_datetime(data["creationDate"]) 
+    data = data.sort_values(by="creationDate", ascending=False) 
+
+    st.write(f"Total entries: {data['amount'].count()}")
+  
+    st.write(f"Total amount in Janury: {data['amount'].sum()}")
+
+    # *********** Monthly Value chain summary **********
+    st.error("Value chain was not available in January")
+
+
+
+
+if "February" in months:
+    st.subheader("February:")
+    data = get_data()
+
+    start_date = '2022-02-01'
+    end_date = '2022-03-01' 
+
+    mask = (data['creationDate'] > start_date) & (data['creationDate'] <= end_date)
+    data = data.loc[mask]
+
+    data["creationDate"] = pd.to_datetime(data["creationDate"]) 
+    data = data.sort_values(by="creationDate", ascending=False) 
+
+    st.write(f"Total entries: {data['amount'].count()}")
+  
+    st.write(f"Total amount in February: {data['amount'].sum()}")
+
+    # *********** Monthly Value chain summary **********
+    st.error("Value chain was not available in February")
+
+if "March" in months:
+    st.subheader("March:")
+    data = get_data()
+
+    start_date = '2022-03-01'
+    end_date = '2022-04-01' 
+
+    mask = (data['creationDate'] > start_date) & (data['creationDate'] <= end_date)
+    data = data.loc[mask]
+
+    data["creationDate"] = pd.to_datetime(data["creationDate"]) 
+    data = data.sort_values(by="creationDate", ascending=False) 
+
+    st.write(f"Total entries: {data['amount'].count()}")
+  
+    st.write(f"Total amount in March: {data['amount'].sum()}")
+
+
+
+    # *********** Monthly Value chain summary **********
+    march_valuechain = data.groupby(["valuechain"])["amount"].sum()
+
+    st.title("March Value chain summary")
+
+    col1, col2 = st.columns([1,1]) 
+
+    with col1:
+        st.write(f"Macamadia: {march_valuechain.Macadamia:.2f} Ksh")
+    with col2:
+        st.write(f"Cashew: { march_valuechain.Cashew:.2f} Ksh")
+    # *********** Value chain summary **********
+
+if "April" in months:
+    st.subheader("April:")
+    data = get_data()
+
+    start_date = '2022-04-01'
+    end_date = '2022-04-05' 
+
+    mask = (data['creationDate'] > start_date) & (data['creationDate'] <= end_date)
+    data = data.loc[mask]
+
+    data["creationDate"] = pd.to_datetime(data["creationDate"]) 
+    data = data.sort_values(by="creationDate", ascending=False) 
+
+    st.write(f"Total entries: {data['amount'].count()}")
+  
+    st.write(f"Total amount in April: {data['amount'].sum()}")
+
+    # *********** Monthly Value chain summary **********
+    april_valuechain = data.groupby(["valuechain"])["amount"].sum()
+
+    st.title("February Value chain summary")
+
+    col1, col2 = st.columns([1,1]) 
+
+    with col1:
+        st.write(f"Macamadia: {april_valuechain.Macadamia:.2f} Ksh")
+    with col2:
+        st.write(f"Cashew: { april_valuechain.Cashew:.2f} Ksh")
+    # *********** Value chain summary **********    
+
+
+if "May" in months:
+    st.write("May data is not yet available")
+    
+if "June" in months:
+    st.write("June data is not yet available")
+
 
 hide_st_style = """
             <style>

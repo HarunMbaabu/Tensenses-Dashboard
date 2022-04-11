@@ -146,7 +146,7 @@ st.markdown("---")
 st.subheader("Monthly Analysis:")
 
 months = st.sidebar.selectbox(
-    "Select month:",
+    "Select the Monthly to Analysis:",
 
     ["January", "February", "March", "April", "May"])
 
@@ -230,7 +230,7 @@ if "April" in months:
     data = get_data()
 
     start_date = '2022-04-01'
-    end_date = '2022-04-05' 
+    end_date = '2022-04-31' 
 
     mask = (data['creationDate'] > start_date) & (data['creationDate'] <= end_date)
     data = data.loc[mask]
@@ -243,7 +243,19 @@ if "April" in months:
     st.write(f"Total amount in April: {data['amount'].sum()}")
 
     # *********** Monthly Value chain summary **********
-    st.error("April Value chain summary is not available.")
+    april_valuechain = data.groupby(["valuechain"])["amount"].sum()
+
+    st.title("April Value chain summary")
+
+    col1, col2 = st.columns([1,1]) 
+
+    with col1:
+        st.write(f"Macamadia: {april_valuechain.Macadamia:.2f} Ksh")
+    with col2:
+        st.error(f"Not Cashew Data available yet")
+    # *********** Value chain summary **********
+
+
 
 if "May" in months:
     st.write("May data is not yet available")

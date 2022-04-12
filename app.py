@@ -146,7 +146,7 @@ st.markdown("---")
 st.subheader("Monthly Analysis:")
 
 months = st.sidebar.selectbox(
-    "Select the Monthly to Analysis:",
+    "Select the Month to Analysis:",
 
     ["January", "February", "March", "April", "May"])
 

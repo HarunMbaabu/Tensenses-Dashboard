@@ -230,7 +230,7 @@ if "April" in months:
     data = get_data()
 
     start_date = '2022-04-01'
-    end_date = '2022-04-31' 
+    end_date = '2022-04-30' 
 
     mask = (data['creationDate'] > start_date) & (data['creationDate'] <= end_date)
     data = data.loc[mask]

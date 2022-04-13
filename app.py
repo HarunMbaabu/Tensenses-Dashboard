@@ -36,7 +36,7 @@ col1, col2 = st.columns([1,1])
 with col1:
     st.write(f"Total entries: {len(data.index)}")
 with col2:
-    st.write(f"Current Gross Total: {data['amount'].sum():.2f} Ksh")
+    st.write(f"Current Gross Total: {data['amount'].sum():,.2f} Ksh")
 
 
 
@@ -53,13 +53,13 @@ st.subheader("Total Amount Per Month")
 
 amount = summ["amount"]
 
-st.write(f"January: {amount[0]:.2f} Ksh")
+st.write(f"January: {amount[0]:,.2f} Ksh")
 
-st.write(f"February: {amount[1]:.2f} Ksh")
+st.write(f"February: {amount[1]:,.2f} Ksh")
 
-st.write(f"March: {amount[2]:.2f} Ksh") 
+st.write(f"March: {amount[2]:,.2f} Ksh") 
 
-st.write(f"April: {amount[3]:.2f} Ksh ")
+st.write(f"April: {amount[3]:,.2f} Ksh ")
 
 st.markdown("---")
 # *********** Total Amount Per Month **********
@@ -74,9 +74,9 @@ st.title("Value chain summary")
 col1, col2 = st.columns([1,1]) 
 
 with col1:
-    st.write(f"Macamadia: {valuechain.Macadamia:.2f} Ksh")
+    st.write(f"Macamadia: {valuechain.Macadamia:,.2f} Ksh")
 with col2:
-    st.write(f"Cashew: { valuechain.Cashew:.2f} Ksh")
+    st.write(f"Cashew: { valuechain.Cashew:,.2f} Ksh")
 # *********** Value chain summary **********
 
 
@@ -165,7 +165,7 @@ if "January" in months:
 
     st.write(f"Total entries: {data['amount'].count()}")
   
-    st.write(f"Total amount in Janury: {data['amount'].sum()}")
+    st.write(f"Total amount in January: {data['amount'].sum()}")
 
     # *********** Monthly Value chain summary **********
     st.error("Value chain was not available in January")

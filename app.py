@@ -34,7 +34,7 @@ st.title("TSA Report Generator Dashboard")
 col1, col2 = st.columns([1,1]) 
 
 with col1:
-    st.write(f"Total entries: {len(data.index)}")
+    st.write(f"Total entries: {len(data.index):,}")
 with col2:
     st.write(f"Current Gross Total: {data['amount'].sum():,.2f} Ksh")
 
@@ -60,6 +60,8 @@ st.write(f"February: {amount[1]:,.2f} Ksh")
 st.write(f"March: {amount[2]:,.2f} Ksh") 
 
 st.write(f"April: {amount[3]:,.2f} Ksh ")
+
+st.write(f"May: {amount[4]:,.2f} Ksh ")
 
 st.markdown("---")
 # *********** Total Amount Per Month **********
@@ -128,8 +130,9 @@ if 'April' in option:
 
 
 if 'May' in option:
-    st.write("May data is not yet available")
-
+    may_start_date1 = '2022-05-01'
+    may_end_date1 = '2022-05-31' 
+    download_data(start_date1, end_date1)
 
 
 if 'June' in option:
@@ -258,7 +261,35 @@ if "April" in months:
 
 
 if "May" in months:
-    st.write("May data is not yet available")
+    st.subheader("May: ")
+    data = get_data()
+
+    start_date = '2022-05-01'
+    end_date = '2022-05-31' 
+
+    mask = (data['creationDate'] > start_date) & (data['creationDate'] <= end_date)
+    data = data.loc[mask]
+
+    data["creationDate"] = pd.to_datetime(data["creationDate"]) 
+    data = data.sort_values(by="creationDate", ascending=False) 
+
+    st.write(f"Total entries: {data['amount'].count()}")
+  
+    st.write(f"Total amount in May: {data['amount'].sum()}")
+
+    # *********** Monthly Value chain summary **********
+    may_valuechain = data.groupby(["valuechain"])["amount"].sum()
+
+    st.title("April Value chain summary")
+
+    col1, col2 = st.columns([1,1]) 
+
+    with col1:
+        st.write(f"Macamadia: {may_valuechain.Macadamia:.2f} Ksh")
+    with col2:
+        st.write(f"Cashew: { may_valuechain.Cashew:.2f} Ksh")
+    # *********** Value chain summary **********
+
     
 if "June" in months:
     st.write("June data is not yet available")

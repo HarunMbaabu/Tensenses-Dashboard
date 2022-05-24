@@ -255,6 +255,7 @@ if "April" in months:
     with col1:
         st.write(f"Macamadia: {april_valuechain.Macadamia:.2f} Ksh")
     with col2:
+        st.write("Data not available")
 #         st.write(f"Cashew: {april_valuechain.Cashew:.2f} Ksh")
     # *********** Value chain summary **********
 

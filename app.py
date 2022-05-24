@@ -287,7 +287,7 @@ if "May" in months:
     with col1:
         st.write(f"Macamadia: {may_valuechain.Macadamia:.2f} Ksh")
     with col2:
-        st.write(f"Cashew: { may_valuechain.Cashew:.2f} Ksh")
+        st.write("In May only Macamadia which is available")
     # *********** Value chain summary **********
 
     

@@ -17,7 +17,7 @@ with open('style.css') as f:
 
 
 def get_data():
-    path = r'results.csv'
+    path = r'tsa data.csv'
     return pd.read_csv(path)
     df = get_data()
 
@@ -136,8 +136,19 @@ if 'May' in option:
 
 
 if 'June' in option:
-    st.write("June data is not yet available")
+    june_start_date1 = '2022-06-01'
+    june_end_date1 = '2022-06-30' 
+    download_data(start_date1, end_date1)
     
+if 'July' in option:
+    August_start_date1 = '2022-07-01'
+    August_end_date1 = '2022-07-31' 
+    download_data(start_date1, end_date1)
+
+if 'July' in option:
+    August_start_date1 = '2022-08-01'
+    August_end_date1 = '2022-08-31' 
+    download_data(start_date1, end_date1)
 
         
 st.markdown("---")
@@ -293,7 +304,13 @@ if "May" in months:
 
     
 if "June" in months:
-    st.write("June data is not yet available")
+    st.write("June data is not yet available") 
+
+if "July" in months:
+    st.write("July data is not yet available")
+
+if "August" in months:
+    st.write("August data is not yet available")
 
 
 hide_st_style = """
